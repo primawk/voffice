@@ -1,5 +1,6 @@
 const sequelize = require("../configs/sequelize");
 const { DataTypes } = require("sequelize");
+const RoomUsage = require("./RoomUsage");
 
 const Room = sequelize.define("room", {
   roomName: {
@@ -12,5 +13,8 @@ const Room = sequelize.define("room", {
     defaultValue: 0,
   },
 });
+
+Room.hasMany(RoomUsage);
+RoomUsage.belongsTo(Room);
 
 module.exports = Room;

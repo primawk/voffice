@@ -1,9 +1,6 @@
 const sequelize = require("../configs/sequelize");
 const { DataTypes } = require("sequelize");
 
-const Client = require("./Client");
-const Room = require("./Room");
-
 const RoomUsage = sequelize.define("roomusage", {
   startTime: {
     type: DataTypes.STRING,
@@ -22,11 +19,5 @@ const RoomUsage = sequelize.define("roomusage", {
     allowNull: false,
   },
 });
-
-RoomUsage.hasOne(Client);
-Client.belongsTo(RoomUsage);
-
-RoomUsage.hasOne(Room);
-Room.belongsTo(RoomUsage);
 
 module.exports = RoomUsage;

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("express");
 const corsOptions = require("./configs/corsOptions");
@@ -24,5 +25,10 @@ app.use(express.json());
 
 // routes
 app.use("/rooms", require("./routes/rooms"));
+app.use("/bookings", require("./routes/bookings"));
+app.use("/users", require("./routes/users"));
+app.use("/clients", require("./routes/clients"));
+app.use("/register", require("./routes/register"));
+app.use("/login", require("./routes/login"));
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
