@@ -24,8 +24,8 @@ const Login = () => {
               <button className="mt-4 bg-pink-700 hover:bg-pink-600 text-white py-2 px-6 rounded-lg">
                 Login
               </button>
-              <a href="#" className="text-sm hover:underline">
-                Forgot password?
+              <a href="/register" className="text-sm hover:underline ml-3">
+                Don't have an account?
               </a>
             </div>
           </div>
