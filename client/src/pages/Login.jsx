@@ -35,7 +35,8 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      setAuth({ email });
+      const username = response.data.username;
+      setAuth({ username, email });
       setEmail("");
       setPassword("");
       navigate("/home"); // navigate to the recent url location or intended location

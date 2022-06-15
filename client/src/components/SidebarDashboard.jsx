@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import { FaHome, FaShoppingBag, FaUserAlt, FaShoppingCart, FaFileAlt } from 'react-icons/fa';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
@@ -6,9 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { Link, NavLink } from 'react-router-dom';
 
 const SidebarDashboard = () => {
-  const dataAdmin = JSON.parse(localStorage.getItem('dataAdmin'));
-  const notification = useSelector((state) => state.notification.alert);
-  const history = useSelector((state) => state.notification.history);
+
 
   const DashboardLink = ({ children, icon, to, end, notification }) => {
     return (
@@ -31,44 +29,9 @@ const SidebarDashboard = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 w-40 h-full bg-gray-800 shadow-md z-[14]">
-      <Link to="/">
-        <div className="text-white font-bold text-base p-5 bg-gray-900 flex flex-col items-center gap-3">
-          <img src="/IlLogoWhite.png" alt="Il Logo Heizenberg" className="w-16 2xl:w-[80px]" />
-          Heizen Berg Co.
-        </div>
-      </Link>
-      <div className="py-5">
-        <DashboardLink icon={<FaHome />} to={'/dashboard'} end>
-          Dashboard
-        </DashboardLink>
+    <div className="fixed left-0 top-0 w-40 h-full bg-pink-900 shadow-md z-[14]">
 
-        <DashboardLink icon={<FaShoppingBag />} to={'product'}>
-          Product
-        </DashboardLink>
-
-        <DashboardLink icon={<FaShoppingCart />} to={'transaction'} notification={history}>
-          Transaction
-        </DashboardLink>
-
-        <DashboardLink icon={<FaUserAlt />} to={'user'}>
-          User
-        </DashboardLink>
-
-        {dataAdmin?.is_super ? (
-          <DashboardLink icon={<MdOutlineAdminPanelSettings />} to={'admin'}>
-            Admin
-          </DashboardLink>
-        ) : null}
-
-        <DashboardLink icon={<HiOutlineMail />} to={'notification'} notification={notification}>
-          Notification
-        </DashboardLink>
-
-        <DashboardLink icon={<FaFileAlt />} to={'report'}>
-          Report
-        </DashboardLink>
-      </div>
+   
     </div>
   );
 };
