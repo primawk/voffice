@@ -1,12 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import axios from "../api/axios";
+import axios from "axios";
 
 const NAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
-const REGISTER_URL = "/register";
 
 const Register = () => {
   const nameRef = useRef();
@@ -78,7 +77,7 @@ const Register = () => {
     }
     try {
       const response = await axios.post(
-        REGISTER_URL,
+        "http://localhost:3500/register",
         JSON.stringify({ name, email, password }),
         {
           headers: { "Content-Type": "application/json" },
@@ -86,9 +85,6 @@ const Register = () => {
         }
       );
       setSuccess(true);
-      //clear state and controlled inputs
-      //need value attrib on inputs for this
-      console.log(JSON.stringify(response));
       setNameFocus("");
       setPassword("");
       setMatchPassword("");
@@ -107,12 +103,12 @@ const Register = () => {
   return (
     <>
       {success ? (
-        <section>
+        <div className="ml-92 place-content-center">
           <h1>Success!</h1>
           <p>
             <a href="/login">Sign In</a>
           </p>
-        </section>
+        </div>
       ) : (
         <div className="min-h-screen bg-gray-100 text-gray-800 antialiased px-4 py-6 flex flex-col justify-center sm:py-12">
           <div className="relative py-3 sm:max-w-xl mx-auto text-center">
