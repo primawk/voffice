@@ -1,15 +1,21 @@
 require("dotenv").config();
 const express = require("express");
+const app = express();
 const cors = require("express");
 const corsOptions = require("./configs/corsOptions");
-const app = express();
 const sequelize = require("./configs/sequelize");
+const credentials = require("./middleware/credentials");
 const PORT = process.env.PORT || 3500;
 
+app.use(credentials); // put above corsOptions
+
+// Cross Origin Resource Sharing
 app.use(cors(corsOptions));
 
+// built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({ extended: false }));
 
+// built-in middleware for json
 app.use(express.json());
 
 (async () => {
