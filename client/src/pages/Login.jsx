@@ -39,7 +39,7 @@ const Login = () => {
       setAuth({ username, email });
       setEmail("");
       setPassword("");
-      navigate("/home"); // navigate to the recent url location or intended location
+      navigate("/rooms"); // navigate to the recent url location or intended location
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
