@@ -43,7 +43,7 @@ const SidebarDashboard = () => {
         </div>
       </Link>
       <div className="py-5">
-        <DashboardLink icon={<FaHome />} to={"/rooms"} end>
+        <DashboardLink icon={<FaHome />} to={"rooms"} end>
           Rooms
         </DashboardLink>
 
