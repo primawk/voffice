@@ -2,10 +2,12 @@ import { useState, Fragment } from "react";
 import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Modal = ({ roomId }) => {
   const [open, setOpen] = useState(false);
-  const [clients, setClients] = useState(false);
+  const [clients, setClients] = useState([]);
+  const [currentClient, setCurrentClient] = useState(0);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
@@ -23,13 +25,23 @@ const Modal = ({ roomId }) => {
     }
   };
 
+  useEffect(() => {
+    fetchClients();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newBooking = {
+      startTime,
+      endTime,
+      roomId,
+      clientId: parseInt(currentClient),
+    };
 
     try {
       const response = await axios.post(
         "http://localhost:3500/bookings",
-        JSON.stringify({ startTime, endTime, roomId }),
+        JSON.stringify(newBooking),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -122,6 +134,28 @@ const Modal = ({ roomId }) => {
                           defaultValue="13:00"
                           className={`h-10 w-full px-3 rounded-lg focus:outline-none border transition cursor-pointer placeholder:font-semibold placeholder:text-gray-300`}
                         />
+                      </div>
+                    </div>
+                    <div className="w-full flex flex-col">
+                      <label
+                        htmlFor="client"
+                        className="text-xl font-thin text-sky-400 mb-1 cursor-pointer leading-tight"
+                      >
+                        Client:
+                      </label>
+                      <div className="w-full relative flex items-center">
+                        <select
+                          name="clientId"
+                          id=""
+                          onChange={(e) => setCurrentClient(+e.target.value)}
+                        >
+                          <option value="">Choose a client</option>
+                          {clients.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                   </div>
