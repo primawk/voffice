@@ -3,7 +3,7 @@ import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-const Modal = () => {
+const Modal = ({ roomId }) => {
   const [open, setOpen] = useState(false);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -16,30 +16,20 @@ const Modal = () => {
     try {
       const response = await axios.post(
         "http://localhost:3500/bookings",
-        JSON.stringify({ startTime, endTime }),
+        JSON.stringify({ startTime, endTime, roomId }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
       console.log(JSON.stringify(response?.data));
-      // console.log(JSON.stringify(response));
       navigate("/home/rooms"); // navigate to the recent url location or intended location
     } catch (err) {
-      //   if (!err?.response) {
-      //     setErrMsg("No Server Response");
-      //   } else if (err.response?.status === 400) {
-      //     setErrMsg("Missing Username or Password");
-      //   } else if (err.response?.status === 401) {
-      //     setErrMsg("Unauthorized");
-      //   } else {
-      //     setErrMsg("Login Failed");
-      //   }
       console.log(err);
     }
   };
 
-  console.log(startTime);
+  console.log(roomId);
 
   return (
     <>

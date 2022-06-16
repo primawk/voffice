@@ -25,7 +25,7 @@ const Rooms = () => {
   const renderRooms = () => {
     return rooms.map((room) => {
       return (
-        <div className="grid grid-cols-1 m-3">
+        <div className="grid grid-cols-1 m-3" key={room.id}>
           {/* single product */}
           <div className="bg-white shadow-md rounded overflow-hidden group">
             {/* product image */}
@@ -43,7 +43,7 @@ const Rooms = () => {
                 </p>
               </div>
               <div>
-                <Modal />
+                <Modal roomId={room.id} />
               </div>
             </div>
           </div>
