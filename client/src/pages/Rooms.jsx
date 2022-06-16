@@ -20,8 +20,6 @@ const Rooms = () => {
     fetchRooms();
   }, []);
 
-  console.log(rooms);
-
   const renderRooms = () => {
     return rooms.map((room) => {
       return (
