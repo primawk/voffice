@@ -5,10 +5,23 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Modal = ({ roomId }) => {
   const [open, setOpen] = useState(false);
+  const [clients, setClients] = useState(false);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
   const navigate = useNavigate();
+
+  const fetchClients = async () => {
+    try {
+      const clientList = await axios.get("http://localhost:3500/clients", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      setClients(clientList.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
