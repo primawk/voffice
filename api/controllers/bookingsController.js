@@ -15,13 +15,11 @@ module.exports = {
   },
   addBooking: async (req, res) => {
     try {
-      let { startTime, endTime, bookingDate, quotaUsed, roomId, clientId } =
-        req.body;
+      let { startTime, endTime, quotaUsed, roomId, clientId } = req.body;
 
       const booking = await RoomUsage.create({
         startTime,
         endTime,
-        bookingDate,
         quotaUsed,
         roomId,
         clientId,

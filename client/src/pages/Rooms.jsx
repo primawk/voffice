@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Modal from "../components/Modal";
+
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   const fetchRooms = async () => {
@@ -41,9 +43,7 @@ const Rooms = () => {
                 </p>
               </div>
               <div>
-                <button className="m-auto h-full rounded-md mt-auto bg-pink-800 text-white font-bold hover:brightness-110 cursor-pointer transition active:scale-95 text-sm gap-2 flex justify-center items-center shadow p-3">
-                  Book
-                </button>
+                <Modal />
               </div>
             </div>
           </div>
